@@ -33,7 +33,7 @@ $(function(){
 	//添加点击事件
 	map.addEventListener("click", function(e){
 	});
-})
+});
 //初始化地图
 var map;
 function init(){
@@ -82,7 +82,7 @@ function addPolyline(){
 	      });  
 	   //添加鼠标绘制工具监听事件，用于获取绘制结果
  	  drawingManager.addEventListener('overlaycomplete', overlaycomplete);
-} 
+};
 //提示验证信息
   function showMessage(){
 	var code ='13815892591';
@@ -121,7 +121,7 @@ function addPolyline(){
 			  }
 			}
 		); 
-  }
+  };
   //增加折线对应的名称
  var i=1;
  var name="";;
@@ -131,14 +131,14 @@ function addPolyline(){
 	 i++;
 	 $("#result").append(div);
 	 doSave(name);
- }
+ };
  //展示地图
 function showMap(name){
 	var objPolyline= getPolyline(name);
 	map.addOverlay(objPolyline);//增加折线
 	objPolyline.enableEditing();
 	addArrow(objPolyline);
- }
+ };
 //隐藏覆盖
 function  hideMap(name){
 	var objPolyline= getPolyline(name);
@@ -146,7 +146,7 @@ function  hideMap(name){
 	for(var i =0;i<overlays.length;i++){
 	}
 	map.clearOverlays();  
-}
+};
 //得到折线的坐标
 function getCoord(){
 	 var path =polyline.getPath();//Array<Point> 返回多边型的点数组
@@ -156,7 +156,7 @@ function getCoord(){
      }
      $("#addresss").val(' ');
      $("#addresss").attr('value',val);
-}
+};
 //保存轨迹
 var sort= 0;
  function doSave(name){
@@ -166,7 +166,7 @@ var sort= 0;
 		url:'<%=path%>/doSavePath.do?coord='+$("#addresss").val()+'&name='+name+'&sort='+sort,
 		success:function(data){}
 	});
- }
+ };
  //修改节点内容
  function doUpdate(){
 	 $.ajax({
@@ -202,7 +202,7 @@ var objPolyline;
 		 }
 	 });
 	 return objPolyline;
- }
+ };
  //读取保存的地图轨迹
  function readMap(){
 	 var jsonCoor = '${coorList}';
@@ -229,7 +229,7 @@ var objPolyline;
 			 }
 		 }
 	 });
- }
+ };
  //增加标签
  function addArrow(objPolyline){
 	 var linePoint=objPolyline.getPath();//线的坐标串  
@@ -267,7 +267,7 @@ var objPolyline;
         	 	  marker.setLabel(label);  
         	 }
      }  
- }
+ };
 //创建表单信息
  function createForm(objPolyline){
  	var sContent = "<table width='100%' height='100%'  border='0' align='center'  ><tr><td colspan='3'><input type='text' placeholder='名称' id='trackname'  style='margin-top:10px;width:200px'></td>"+
@@ -286,7 +286,7 @@ function clearAll(){
         map.removeOverlay(overlays[i]);
     }
 	overlays.length = 0  
-}
+};
 //随机数
 function MathRand() { 
   	var num=""; 
@@ -295,7 +295,7 @@ function MathRand() {
   		num+=Math.floor(Math.random()*10); 
   	} 
   	return num;
-}
+};
 </script>
 </head>
 <body>
