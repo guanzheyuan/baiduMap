@@ -155,10 +155,11 @@ public class fileUtil {
 		 SAXBuilder saxBuilder = new SAXBuilder();//建立构造器  
 		 Document doc = saxBuilder.build(new File(path));//读入指定文件  
 	     Element root = doc.getRootElement();//获得根节点  
-	     List<Element> listEmpElement = root.getChildren("Employee");
-	     coordDto coorddto = new coordDto();
-	     List<coordDto> coorList = new ArrayList<>();
-	     for (Element empElement : listEmpElement) {
+	     List<Element> listEmpElement = root.getChildren("Employee");//得到子节点集合
+	     coordDto coorddto = new coordDto();//创建对象实例用于存储
+	     List<coordDto> coorList = new ArrayList<>();//创建集合实例用于存储
+	     for (Element empElement : listEmpElement) {//遍历循环子节点
+	    	 	//组装数据
 		    	 coorddto.setName(empElement.getChild("name").getText());
 		    	 coorddto.setDescribe(empElement.getChild("describe").getText());
 		    	 if(id.lastIndexOf(".")>0){

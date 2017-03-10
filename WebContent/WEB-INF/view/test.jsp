@@ -54,7 +54,7 @@ function addControl(){
 	map.addControl(top_left_navigation);     
 	map.addControl(top_right_navigation);
 }
-//添加折线
+//初始化添加折线
 var overlays = [];
 var polyline;
 var overlaycomplete = function(e){polyline = e.overlay; overlays.push(polyline);polyline.enableEditing();getCoord();addArrow(polyline);showMessage();}
@@ -124,7 +124,7 @@ function addPolyline(){
   };
   //增加折线对应的名称
  var i=1;
- var name="";;
+ var name="";
  function addContent(){
 	 name = MathRand();
 	 var div="<div class='content'  id='"+name+"' >第"+i+"个路线("+name+")<img alt='显示' src='<%=path%>/public/image/show.png' width='30' height='20' onclick='showMap("+name+")' style='cursor:pointer;float:right;padding-right:10px;'><img alt='隐藏' src='<%=path%>/public/image/hidden.png' width='30' height='20' onclick='hideMap("+name+")' style='cursor:pointer;float:right;padding-right:10px;'><img alt='' src='<%=path%>/public/image/delete.png' width='20' height='20' onclick='deleteMap("+name+")' style='float: right;cursor:pointer;padding-right:10px;'></div>";
@@ -142,9 +142,6 @@ function showMap(name){
 //隐藏覆盖
 function  hideMap(name){
 	var objPolyline= getPolyline(name);
-	var flag = true;
-	for(var i =0;i<overlays.length;i++){
-	}
 	map.clearOverlays();  
 };
 //得到折线的坐标
@@ -197,7 +194,7 @@ var objPolyline;
 				  for(var i = 0;i<result.length;i++){
 					  polylinePointsArray.push(new BMap.Point(result[i].lng,result[i].lat));
 				  }
-				  objPolyline = new BMap.Polyline(polylinePointsArray, {strokeColor:"#4B0082", strokeWeight:3, strokeOpacity:0.8,fillOpacity: 0.6, strokeStyle: 'solid' });
+				  objPolyline = new BMap.Polyline(polylinePointsArray, {strokeColor:"#4B0082", strokeWeight:3, strokeOpacity:0.8,fillOpacity: 0.6, strokeStyle: 'solid'});
 			 }
 		 }
 	 });
@@ -217,7 +214,6 @@ var objPolyline;
  //删除地图轨迹
  function deleteMap(name){
 	getPolyline(name);
-	overlays.push(polyline);
 	 $.ajax({
 		 type:'post',
 		 url:'<%=path%>/doDeleteMap.do?name='+name,
